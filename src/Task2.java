@@ -7,31 +7,30 @@ import java.util.Scanner;
  */
 public class Task2 {
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("enter letter - ");
-        String let = scan.nextLine();
-        System.out.print("enter number - ");
-        int num = scan.nextInt();
-        String a= (let);
-        int b= (num);
-        scan = new Scanner(System.in);
-        System.out.print("which to switch to letter  - ");
-        String letX = scan.nextLine();
-        System.out.print("which to switch to number - ");
-        int numY = scan.nextInt();
-        String x= (letX);
-        int y= (numY);
-        canMoveHorse(int a, b);
-        chessBoard(int a,b);
+        Scanner inputUser = new Scanner(System.in);
+        System.out.println("Хід коня з");
+        String start;
+        String muveS = inputUser.next();
+        System.out.println("Хід коня на");
+        String fin;
+        String muveF = inputUser.next();
+        {
+            start = muveS.split(" ")[0];
+            fin = muveF.split(" ")[0];
+            if (isMuve(start.charAt(0), Character.digit(start.charAt(1), 8),
+                    fin.charAt(0), Character.digit(fin.charAt(1), 8)))
+                System.out.println("Bірний");
+            else System.out.println("не вірний");
+        }
     }
-    public static String chessBoard(int a, int b) {
-        String letter = "abcdefgh";
-        String number = "87654321";
-        if ((a > 7)||(b>7)) return null;
-        else return (Character.toString(letter.charAt(a)) + number.charAt(b));
-    }
-    public static boolean canMoveHorse(final int a, final int b) {
 
-        return (a - x) == (b - y) || (a + x) == (b + y);
+    public static boolean positionBoard(char letter, int num) {
+        return (letter < 'a' && letter <= 'h') && (num < 1 && num <= 8);
+    }
+
+    public static boolean isMuve(char startPos, int numStartPos, char finPos, int finNumPos) {
+        return (!positionBoard(startPos, numStartPos) ||
+                !positionBoard(finPos, finNumPos)) &&
+                Math.abs(startPos - finPos) + Math.abs(numStartPos - finNumPos) == 3;
     }
 }
