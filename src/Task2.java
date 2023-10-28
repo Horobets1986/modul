@@ -31,6 +31,7 @@ public class Task2 {
     public static boolean isMuve(char startPos, int numStartPos, char finPos, int finNumPos) {
         return (!positionBoard(startPos, numStartPos) ||
                 !positionBoard(finPos, finNumPos)) &&
+                ((startPos!=finPos)&&(numStartPos!=finNumPos))&&
                 Math.abs(startPos - finPos) + Math.abs(numStartPos - finNumPos) == 3;
     }
 }
